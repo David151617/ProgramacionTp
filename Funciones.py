@@ -234,3 +234,4 @@ def multiple(num1, num2):
         # Si el residuo no es cero, num1 no es múltiplo de num2
         return False
 
+Solo quiero probar que onda
