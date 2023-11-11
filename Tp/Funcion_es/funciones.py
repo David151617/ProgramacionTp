@@ -342,6 +342,62 @@ def insertion_sort(list_1):
     # Devolver la lista ordenada
     return list_1
 
+def is_power(n, b):
+    # Caso base: Si n es 1, entonces es una potencia de cualquier número.
+    if n == 1:
+        return True
 
+    # Inicializar la potencia y realizar el bucle mientras n sea divisible por b.
+    power = 1
+    while power < n:
+        power *= b
+        if power == n:
+            return True
 
+    # Si llegamos a este punto, n no es una potencia de b.
+    return False
 
+def find_potitions(a, b, inicio=0):
+    # Encontrar la primera ocurrencia de b en a a partir de la posición de inicio
+    potitions = a.find(b, inicio)
+
+    # Si no se encuentra más ninguna ocurrencia, devolver una lista vacía
+    if potitions == -1:
+        return []
+    
+    # Si se encuentra una ocurrencia, realizar la llamada recursiva para encontrar las siguientes
+    potitions_rest = find_potitions(a, b, potitions + 1)
+
+    # Devolver la posición actual y las posiciones encontradas en el resto de la cadena
+    return [potitions] + potitions_rest
+
+def pair(n):
+    if n == 0:
+        return True
+    elif n > 0:
+        return odd(n - 1)
+    else:
+        return False  # Consideramos que los números negativos no son ni pares ni impares.
+
+def odd(n):
+    if n == 1:
+        return True
+    elif n > 1:
+        return pair(n - 1)
+    else:
+        return False  # Consideramos que los números negativos no son ni pares ni impares.
+
+def find_greater(list_1):
+    # Caso base: si la lista está vacía, no hay un mayor elemento.
+    if not list_1:
+        return None
+
+    # Caso base: si la lista tiene un solo elemento, ese es el mayor.
+    if len(list_1) == 1:
+        return list_1[0]
+
+    # Comparar el primer elemento con el mayor del resto de la lista.
+    grater_rest = find_greater(list_1[1:])
+
+    # Devolver el mayor entre el primer elemento y el mayor del resto.
+    return list_1[0] if list_1[0] > grater_rest else grater_rest
